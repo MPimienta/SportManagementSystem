@@ -14,7 +14,7 @@ public class PlayerList {
     public void addPlayer(String name){
         int index = this.playerIndex(name);
 
-        if(!this.playerExists(name, index)){
+        if(!this.playerExists(index)){
             this.players.add(index,new Player(name));
         } else {
             Error.PLAYER_ALREADY_EXISTS.writeln();
@@ -31,7 +31,7 @@ public class PlayerList {
     public void removePlayer(String name){
         int index = this.playerIndex(name);
 
-        if(!this.playerExists(name, index)){
+        if(!this.playerExists(index)){
             Error.PLAYER_DOES_NOT_EXIST.writeln();
         } else {
             this.players.remove(index);
@@ -54,7 +54,7 @@ public class PlayerList {
     public void setNewPlayerScore(String name, double newScore){
         int index = this.playerIndex(name);
 
-        if(!this.playerExists(name, index)){
+        if(!this.playerExists(index)){
             Error.PLAYER_DOES_NOT_EXIST.writeln();
         } else {
             this.players.get(index).setNewScore(newScore);
@@ -71,14 +71,19 @@ public class PlayerList {
     }
 
     public void makeMatch(String[] playerNames){
-        Player[] matchPlayers = new Player[2];
-        for (int i = 0; i < playerNames.length; i++) {
-            int index = this.playerIndex(playerNames[i]);
-            assert this.playerExists(playerNames[i], index);
-            matchPlayers[i] = this.players.get(index);
+        int[] indexes = new int[playerNames.length];
+        for (int i = 0; i < indexes.length; i++) {
+            indexes[i] = this.playerIndex(playerNames[i]);
         }
-        this.matchmaking.matchMake(matchPlayers);
-
+        if (this.playerExists(indexes[0]) || this.playerExists(indexes[0])){
+            Error.PLAYER_DOES_NOT_EXIST.writeln();
+        } else {
+            Player[] matchPlayers = new Player[playerNames.length];
+            for (int i = 0; i < playerNames.length; i++) {
+                matchPlayers[i] = this.players.get(indexes[i]);
+            }
+            this.matchmaking.matchMake(matchPlayers);
+        }
     }
 
     public void randomMatchmake(){
@@ -124,8 +129,8 @@ public class PlayerList {
         return auxList;
     }
 
-    private boolean playerExists(String name, int index){
-        if(index == this.players.size() || !this.players.get(index).getName().equals(name)){
+    private boolean playerExists(int index){
+        if(index == this.players.size()){
             return false;
         } else {
             return true;
@@ -134,10 +139,12 @@ public class PlayerList {
 
     private int playerIndex(String name){
         assert name != null;
+
         int i = 0;
-        while(i < this.players.size() && this.players.get(i).getName().compareTo(name) > 0){
+        while(i < this.players.size() && !this.players.get(i).getName().equals(name)){
             i++;
         }
+
         return i;
     }
 
