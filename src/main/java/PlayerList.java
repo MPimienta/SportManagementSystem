@@ -21,6 +21,25 @@ public class PlayerList {
         }
     }
 
+    private boolean playerExists(int index){
+        if(index == this.players.size()){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private int playerIndex(String name){
+        assert name != null;
+
+        int i = 0;
+        while(i < this.players.size() && !this.players.get(i).getName().equals(name)){
+            i++;
+        }
+
+        return i;
+    }
+
     public void showList(){
         Iterator<Player> iterator = this.players.iterator();
         while(iterator.hasNext()){
@@ -48,6 +67,18 @@ public class PlayerList {
 
         for (int i = 0; i < ranking.length; i++) {
             System.out.println(ranking[i]);
+        }
+    }
+
+    private void sort(Player[] ranking){
+        for (int i=1; i < ranking.length; i++) {
+            Player aux = ranking[i];
+            int j = i;
+            while (j > 0 && ranking[j-1].getScore() < aux.getScore()){
+                ranking[j] = ranking[j-1];
+                j--;
+            }
+            ranking[j]=aux;
         }
     }
 
@@ -129,34 +160,7 @@ public class PlayerList {
         return auxList;
     }
 
-    private boolean playerExists(int index){
-        if(index == this.players.size()){
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    private int playerIndex(String name){
-        assert name != null;
 
-        int i = 0;
-        while(i < this.players.size() && !this.players.get(i).getName().equals(name)){
-            i++;
-        }
 
-        return i;
-    }
-
-    private void sort(Player[] ranking){
-        for (int i=1; i < ranking.length; i++) {
-            Player aux = ranking[i];
-            int j = i;
-            while (j > 0 && ranking[j-1].getScore() < aux.getScore()){
-                ranking[j] = ranking[j-1];
-                j--;
-            }
-            ranking[j]=aux;
-        }
-    }
 }
