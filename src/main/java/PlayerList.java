@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class PlayerList {
     private final LinkedList<Player> players;
-    private final Matchmaking matchmaking;
+    private final MatchList matchList;
 
     public PlayerList(){
         this.players = new LinkedList<>();
-        this.matchmaking = new Matchmaking();
+        this.matchList = new MatchList();
     }
 
     public void addPlayer(String name){
@@ -17,7 +17,7 @@ public class PlayerList {
         if(!this.playerExists(index)){
             this.players.add(index,new Player(name));
         } else {
-            Error.PLAYER_ALREADY_EXISTS.writeln();
+            views.Error.PLAYER_ALREADY_EXISTS.writeln();
         }
     }
 
@@ -51,7 +51,7 @@ public class PlayerList {
         int index = this.playerIndex(name);
 
         if(!this.playerExists(index)){
-            Error.PLAYER_DOES_NOT_EXIST.writeln();
+            views.Error.PLAYER_DOES_NOT_EXIST.writeln();
         } else {
             this.players.remove(index);
         }
@@ -86,19 +86,19 @@ public class PlayerList {
         int index = this.playerIndex(name);
 
         if(!this.playerExists(index)){
-            Error.PLAYER_DOES_NOT_EXIST.writeln();
+            views.Error.PLAYER_DOES_NOT_EXIST.writeln();
         } else {
             this.players.get(index).setNewScore(newScore);
         }
     }
 
     public void clearMatchList(){
-        this.matchmaking.clearMatchmake();
+        this.matchList.clearMatchmake();
 
     }
 
     public void showMatchList(){
-        this.matchmaking.showMatchmake();
+        this.matchList.showMatchmake();
     }
 
     public void makeMatch(String[] playerNames){
@@ -107,19 +107,19 @@ public class PlayerList {
             indexes[i] = this.playerIndex(playerNames[i]);
         }
         if (this.playerExists(indexes[0]) || this.playerExists(indexes[0])){
-            Error.PLAYER_DOES_NOT_EXIST.writeln();
+            views.Error.PLAYER_DOES_NOT_EXIST.writeln();
         } else {
             Player[] matchPlayers = new Player[playerNames.length];
             for (int i = 0; i < playerNames.length; i++) {
                 matchPlayers[i] = this.players.get(indexes[i]);
             }
-            this.matchmaking.matchMake(matchPlayers);
+            this.matchList.matchMake(matchPlayers);
         }
     }
 
     public void randomMatchmake(){
         if(this.players.size() % 2 != 0){
-            Error.UNEVEN_PLAYER_AMOUNT.writeln();
+            views.Error.UNEVEN_PLAYER_AMOUNT.writeln();
         } else {
             this.makeRandomMatchmake();
         }
@@ -136,7 +136,7 @@ public class PlayerList {
                 randomMatches[j] = auxList.get(index);
                 auxList.remove(index);
             }
-            this.matchmaking.matchMake(randomMatches);
+            this.matchList.matchMake(randomMatches);
         }
     }
 

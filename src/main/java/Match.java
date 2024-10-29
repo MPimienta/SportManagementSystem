@@ -13,7 +13,7 @@ public class Match {
 
     private void createMatch(Player[] players){
         if(players[0].isMatched() && players[1].isMatched()){
-            Error.ALREADY_EXISTING_MATCH.writeln();
+            views.Error.ALREADY_EXISTING_MATCH.writeln();
         } else {
             for (int i = 0; i < PLAYERS_IN_MATCH; i++) {
                 this.matches[i] = players[i];

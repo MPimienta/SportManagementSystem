@@ -1,10 +1,12 @@
+import views.Message;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Matchmaking {
+public class MatchList {
     private final LinkedList<Match> matchList;
 
-    public Matchmaking(){
+    public MatchList(){
         this.matchList = new LinkedList<>();
     }
 

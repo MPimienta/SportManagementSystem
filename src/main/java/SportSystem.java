@@ -1,17 +1,23 @@
+import views.Message;
+
 public class SportSystem {
 
-    private final CommandHandler commandHandler;
+    private final Command command;
+    private PlayerList playerList;
+    private MatchList matchList;
 
     public SportSystem(){
-        this.commandHandler = new CommandHandler();
+        this.command = new Command(playerList, matchList);
+        this.playerList = new PlayerList();
+        this.matchList = new MatchList();
     }
 
     private void start(){
         Message.TITLE.writeln();
-        this.commandHandler.initialize();
+        this.command.initialize();
         do{
             Message.ENTER_COMAND.write();
-            this.commandHandler.readCommand();
+            this.command.readCommand();
         }while(true);
     }
 

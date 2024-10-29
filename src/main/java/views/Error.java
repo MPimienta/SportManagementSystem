@@ -1,4 +1,6 @@
-enum Error {
+package views;
+
+public enum Error {
     INVALID_SCORE("\tNew score must be greater or equal to -999999.0"),
     INVALID_COMMAND("\tInvalid command"),
     TOO_MANY_ARGUMENTS("\tToo many arguments"),

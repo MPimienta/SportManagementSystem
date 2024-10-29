@@ -1,4 +1,6 @@
-enum Message {
+package views;
+
+public enum Message {
     TITLE("----Sport Management System----"),
     ENTER_COMAND(">>>"),
     MATCH_LIST("----Match List----");

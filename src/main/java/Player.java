@@ -11,7 +11,7 @@ public class Player {
 
     public void setNewScore(double score){
         if(score < -999999.0){
-            Error.INVALID_SCORE.writeln();
+            views.Error.INVALID_SCORE.writeln();
         } else {
             this.score = score;
         }

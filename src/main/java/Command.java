@@ -1,24 +1,22 @@
-import java.util.Scanner;
+import views.Input;
+import views.Error;
+import views.Message;
 
-public class CommandHandler {
+public class Command {
 
     private final static int COMMAND = 0;
     private final static int ARGUMENT = 1;
     private final PlayerList playerList;
+    private final MatchList matchList;
     private String[] input;
 
-    public CommandHandler(){
-        this.playerList = new PlayerList();
+    public Command(PlayerList playerList, MatchList matchList){
+        this.playerList = playerList;
+        this.matchList = matchList;
     }
 
     public void readCommand(){
-        Scanner scanner = new Scanner(System.in);
-        this.input = scanner.nextLine().split(" ");
-        if(this.input.length > 2){
-            Error.TOO_MANY_ARGUMENTS.writeln();
-        } else {
-            this.handleCommand();
-        }
+        this.input = Input.readCommand();
     }
 
     private void handleCommand(){
@@ -51,7 +49,7 @@ public class CommandHandler {
                 playerList.randomMatchmake();
                 break;
             default:
-                Error.INVALID_COMMAND.writeln();
+                views.Error.INVALID_COMMAND.writeln();
         }
     }
 
@@ -76,10 +74,10 @@ public class CommandHandler {
                     double newScore = Double.parseDouble(arguments[1]);
                     this.playerList.setNewPlayerScore(name, newScore);
                 } catch(NumberFormatException error){
-                    Error.INVALID_ARGUMENT.writeln();
+                    views.Error.INVALID_ARGUMENT.writeln();
                 }
             } else{
-                Error.INVALID_ARGUMENT.writeln();
+                views.Error.INVALID_ARGUMENT.writeln();
             }
         }
     }
@@ -90,14 +88,14 @@ public class CommandHandler {
             if(arguments.length == 2){
                 this.playerList.makeMatch(arguments);
             } else{
-                Error.WRONG_AMOUNT_OF_PLAYERS.writeln();
+                views.Error.WRONG_AMOUNT_OF_PLAYERS.writeln();
             }
         }
     }
 
     private boolean isValidArgument(){
         if(input.length != 2){
-            Error.INVALID_ARGUMENT.writeln();
+            views.Error.INVALID_ARGUMENT.writeln();
             return false;
         } else {
             return true;
