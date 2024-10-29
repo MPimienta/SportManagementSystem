@@ -21,7 +21,7 @@ public class PlayerList {
         }
     }
 
-    private boolean playerExists(int index){
+    public boolean playerExists(int index){
         if(index == this.players.size()){
             return false;
         } else {
@@ -29,7 +29,7 @@ public class PlayerList {
         }
     }
 
-    private int playerIndex(String name){
+    public int playerIndex(String name){
         assert name != null;
 
         int i = 0;
@@ -38,6 +38,10 @@ public class PlayerList {
         }
 
         return i;
+    }
+
+    public Player getPlayer(int index){
+        return this.players.get(index);
     }
 
     public void showList(){
@@ -92,55 +96,15 @@ public class PlayerList {
         }
     }
 
-    public void clearMatchList(){
-        this.matchList.clearMatchmake();
 
-    }
 
-    public void showMatchList(){
-        this.matchList.showMatchmake();
-    }
 
-    public void makeMatch(String[] playerNames){
-        int[] indexes = new int[playerNames.length];
-        for (int i = 0; i < indexes.length; i++) {
-            indexes[i] = this.playerIndex(playerNames[i]);
-        }
-        if (this.playerExists(indexes[0]) || this.playerExists(indexes[0])){
-            views.Error.PLAYER_DOES_NOT_EXIST.writeln();
-        } else {
-            Player[] matchPlayers = new Player[playerNames.length];
-            for (int i = 0; i < playerNames.length; i++) {
-                matchPlayers[i] = this.players.get(indexes[i]);
-            }
-            this.matchList.matchMake(matchPlayers);
-        }
-    }
 
-    public void randomMatchmake(){
-        if(this.players.size() % 2 != 0){
-            views.Error.UNEVEN_PLAYER_AMOUNT.writeln();
-        } else {
-            this.makeRandomMatchmake();
-        }
-    }
 
-    private void makeRandomMatchmake(){
-        this.clearMatchList();
-        LinkedList<Player> auxList = this.makeAuxList();
-        int size = this.players.size() / 2;
-        for (int i = 0; i < size; i++) {
-            Player[] randomMatches = new Player[2];
-            for (int j = 0; j < 2; j++) {
-                int index = this.getRandomPlayer(auxList);
-                randomMatches[j] = auxList.get(index);
-                auxList.remove(index);
-            }
-            this.matchList.matchMake(randomMatches);
-        }
-    }
 
-    private int getRandomPlayer(LinkedList<Player> auxList){
+
+
+    public int getRandomPlayer(LinkedList<Player> auxList){
         Random random = new Random();
 
         int randomPlayerIndex;
@@ -151,7 +115,7 @@ public class PlayerList {
         return randomPlayerIndex;
     }
 
-    private LinkedList<Player> makeAuxList(){
+    public LinkedList<Player> makeAuxList(){
         LinkedList<Player> auxList = new LinkedList<>();
         Iterator<Player> iterator = this.players.iterator();
         while(iterator.hasNext()){
@@ -160,7 +124,9 @@ public class PlayerList {
         return auxList;
     }
 
-
+    public int getPlayersAmount(){
+        return players.size();
+    }
 
 
 }

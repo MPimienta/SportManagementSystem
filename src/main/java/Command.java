@@ -2,6 +2,8 @@ import views.Input;
 import views.Error;
 import views.Message;
 
+import java.util.LinkedList;
+
 public class Command {
 
     private final static int COMMAND = 0;
@@ -13,6 +15,7 @@ public class Command {
     public Command(PlayerList playerList, MatchList matchList){
         this.playerList = playerList;
         this.matchList = matchList;
+        this.initialize();
     }
 
     public void readCommand(){
@@ -37,16 +40,16 @@ public class Command {
                 this.handleScore();
                 break;
             case "show_matchmake":
-                playerList.showMatchList();
+                matchList.showMatchmake();
                 break;
             case "clear_matchmake":
-                playerList.clearMatchList();
+                matchList.clearMatchmake();
                 break;
             case "matchmake":
                 this.handleMatchmake();
                 break;
             case "random_matchmake":
-                playerList.randomMatchmake();
+                this.handleRandomMatchmake();
                 break;
             default:
                 views.Error.INVALID_COMMAND.writeln();
@@ -86,7 +89,19 @@ public class Command {
         if(this.isValidArgument()){
             String[] arguments = input[ARGUMENT].split(";");
             if(arguments.length == 2){
-                this.playerList.makeMatch(arguments);
+                int[] indexes = new int[arguments.length];
+                for (int i = 0; i < indexes.length; i++) {
+                    indexes[i] = playerList.playerIndex(arguments[i]);
+                }
+                if (playerList.playerExists(indexes[0]) || playerList.playerExists(indexes[0])){
+                    views.Error.PLAYER_DOES_NOT_EXIST.writeln();
+                } else {
+                    Player[] matchPlayers = new Player[arguments.length];
+                    for (int i = 0; i < arguments.length; i++) {
+                        matchPlayers[i] = playerList.getPlayer(indexes[i]);
+                    }
+                    this.matchList.matchMake(matchPlayers);
+                }
             } else{
                 views.Error.WRONG_AMOUNT_OF_PLAYERS.writeln();
             }
@@ -99,6 +114,26 @@ public class Command {
             return false;
         } else {
             return true;
+        }
+    }
+
+    private void handleRandomMatchmake(){
+        if(this.playerList.getPlayersAmount() % 2 != 0){
+            views.Error.UNEVEN_PLAYER_AMOUNT.writeln();
+        } else {
+            final int PLAYERS_IN_MATCH = 2;
+            this.matchList.clearMatchmake();
+            LinkedList<Player> auxList = playerList.makeAuxList();
+            int matchListSize = auxList.size() / 2;
+            for (int i = 0; i < matchListSize; i++) {
+                Player[] randomMatches = new Player[PLAYERS_IN_MATCH];
+                for (int j = 0; j < PLAYERS_IN_MATCH; j++) {
+                    int index = playerList.getRandomPlayer(auxList);
+                    randomMatches[j] = auxList.get(index);
+                    auxList.remove(index);
+                }
+                matchList.matchMake(randomMatches);
+            }
         }
     }
 

@@ -14,7 +14,6 @@ public class SportSystem {
 
     private void start(){
         Message.TITLE.writeln();
-        this.command.initialize();
         do{
             Message.ENTER_COMAND.write();
             this.command.readCommand();
