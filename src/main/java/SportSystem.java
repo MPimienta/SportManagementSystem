@@ -3,13 +3,13 @@ import views.Message;
 public class SportSystem {
 
     private final Command command;
-    private PlayerList playerList;
-    private MatchList matchList;
+    private final PlayerList playerList;
+    private final MatchList matchList;
 
     public SportSystem(){
-        this.command = new Command(playerList, matchList);
         this.playerList = new PlayerList();
         this.matchList = new MatchList();
+        this.command = new Command(playerList, matchList);
     }
 
     private void start(){

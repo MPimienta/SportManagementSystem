@@ -4,11 +4,9 @@ import java.util.Random;
 
 public class PlayerList {
     private final LinkedList<Player> players;
-    private final MatchList matchList;
 
     public PlayerList(){
         this.players = new LinkedList<>();
-        this.matchList = new MatchList();
     }
 
     public void addPlayer(String name){
@@ -96,14 +94,6 @@ public class PlayerList {
         }
     }
 
-
-
-
-
-
-
-
-
     public int getRandomPlayer(LinkedList<Player> auxList){
         Random random = new Random();
 
@@ -127,6 +117,5 @@ public class PlayerList {
     public int getPlayersAmount(){
         return players.size();
     }
-
 
 }

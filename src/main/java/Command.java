@@ -20,6 +20,7 @@ public class Command {
 
     public void readCommand(){
         this.input = Input.readCommand();
+        this.handleCommand();
     }
 
     private void handleCommand(){
