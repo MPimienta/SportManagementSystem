@@ -25,7 +25,7 @@ public class MatchList {
         }
     }
 
-    public void matchMake(Player[] players){
+    public void matchMake(Player_[] players){
         this.matchList.add(new Match(players));
     }
 }

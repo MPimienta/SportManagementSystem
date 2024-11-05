@@ -1,9 +1,9 @@
-public class Player {
+public class Player_ {
     private final String name;
     private double score;
     private boolean isMatched;
 
-    public Player(String name){
+    public Player_(String name){
         this.name = name;
         this.score = 0.0;
         this.isMatched = false;

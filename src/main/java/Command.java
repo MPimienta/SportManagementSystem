@@ -1,6 +1,4 @@
 import views.Input;
-import views.Error;
-import views.Message;
 
 import java.util.LinkedList;
 
@@ -97,7 +95,7 @@ public class Command {
                 if (playerList.playerExists(indexes[0]) || playerList.playerExists(indexes[0])){
                     views.Error.PLAYER_DOES_NOT_EXIST.writeln();
                 } else {
-                    Player[] matchPlayers = new Player[arguments.length];
+                    Player_[] matchPlayers = new Player_[arguments.length];
                     for (int i = 0; i < arguments.length; i++) {
                         matchPlayers[i] = playerList.getPlayer(indexes[i]);
                     }
@@ -124,10 +122,10 @@ public class Command {
         } else {
             final int PLAYERS_IN_MATCH = 2;
             this.matchList.clearMatchmake();
-            LinkedList<Player> auxList = playerList.makeAuxList();
+            LinkedList<Player_> auxList = playerList.makeAuxList();
             int matchListSize = auxList.size() / 2;
             for (int i = 0; i < matchListSize; i++) {
-                Player[] randomMatches = new Player[PLAYERS_IN_MATCH];
+                Player_[] randomMatches = new Player_[PLAYERS_IN_MATCH];
                 for (int j = 0; j < PLAYERS_IN_MATCH; j++) {
                     int index = playerList.getRandomPlayer(auxList);
                     randomMatches[j] = auxList.get(index);

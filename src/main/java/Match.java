@@ -1,9 +1,9 @@
 public class Match {
     private static final int PLAYERS_IN_MATCH = 2;
-    private final Player[] matches;
+    private final Player_[] matches;
 
-    public Match(Player[] players){
-        this.matches = new Player[PLAYERS_IN_MATCH];
+    public Match(Player_[] players){
+        this.matches = new Player_[PLAYERS_IN_MATCH];
         this.createMatch(players);
     }
 
@@ -11,7 +11,7 @@ public class Match {
         return matches[0] + " : " + matches[1];
     }
 
-    private void createMatch(Player[] players){
+    private void createMatch(Player_[] players){
         if(players[0].isMatched() && players[1].isMatched()){
             views.Error.ALREADY_EXISTING_MATCH.writeln();
         } else {
