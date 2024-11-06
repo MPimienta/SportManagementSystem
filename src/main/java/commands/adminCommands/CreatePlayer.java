@@ -3,7 +3,6 @@ package commands.adminCommands;
 import app.Model;
 import commands.Command;
 import users.UserRole;
-import users.players.Player;
 import users.players.PlayerList;
 import users.players.SinglePlayer;
 
