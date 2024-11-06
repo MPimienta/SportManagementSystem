@@ -1,11 +1,10 @@
 package app;
 
-import leagues.MatchList;
-import leagues.TournamentList;
+import lists.TournamentList;
 import users.CommonUser;
 import users.User;
 import users.UserRole;
-import users.players.PlayerList;
+import lists.PlayerList;
 import views.Message;
 
 public class SportSystem {

@@ -2,7 +2,7 @@ package commands.adminCommands;
 
 import app.Model;
 import commands.Command;
-import users.players.PlayerList;
+import lists.PlayerList;
 
 
 public class PlayerDelete implements Command {

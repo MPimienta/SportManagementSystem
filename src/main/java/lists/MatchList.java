@@ -1,6 +1,7 @@
-package leagues;
+package lists;
 
 import app.Model;
+import leagues.Match;
 import views.Message;
 import java.util.Iterator;
 import java.util.LinkedList;

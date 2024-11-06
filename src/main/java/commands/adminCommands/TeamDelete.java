@@ -2,7 +2,7 @@ package commands.adminCommands;
 
 import app.Model;
 import commands.Command;
-import users.players.PlayerList;
+import lists.PlayerList;
 
 public class TeamDelete implements Command {
     private final static int NAME = 0;

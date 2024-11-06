@@ -1,7 +1,9 @@
-package users.players;
+package lists;
 
 import app.Lists;
 import app.Model;
+import users.players.Player;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;

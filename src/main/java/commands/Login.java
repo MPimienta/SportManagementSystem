@@ -6,6 +6,7 @@ import users.User;
 import users.UserRole;
 import users.players.SinglePlayer;
 
+//reorder argument order
 public class Login implements Command{
     private static final int USERNAME = 0;
     private static final int PASSWORD = 1;

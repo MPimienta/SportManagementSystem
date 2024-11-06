@@ -1,7 +1,8 @@
-package leagues;
+package lists;
 
 import app.Lists;
 import app.Model;
+import leagues.Tournament;
 import users.players.Player;
 
 import java.util.Iterator;

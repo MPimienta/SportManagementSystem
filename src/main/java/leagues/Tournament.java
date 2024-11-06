@@ -1,5 +1,7 @@
 package leagues;
 
+import lists.MatchList;
+
 public class Tournament {
     private final MatchList matchList;
     private final String name;
