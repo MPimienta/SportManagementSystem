@@ -1,14 +1,13 @@
 package users;
 
-public class Admin implements User{
-
+public class CommonUser implements User {
     private final String userName;
     private final String password;
     private final UserRole role;
 
-    public Admin(String userName, String password, UserRole role){
-        this.userName = userName;
-        this.password = password;
+    public CommonUser(UserRole role){
+        this.userName = "commonUser";
+        this.password = "";
         this.role = role;
     }
 

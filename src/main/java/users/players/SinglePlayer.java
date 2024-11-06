@@ -45,6 +45,10 @@ public class SinglePlayer extends Player implements User  {
         return fullName;
     }
 
+    public UserRole getRole(){
+        return this.role;
+    }
+
     public int getVictories() {
         return super.getVictories();
     }

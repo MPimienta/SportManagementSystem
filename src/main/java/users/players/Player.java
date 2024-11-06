@@ -47,11 +47,11 @@ abstract public class Player {
         return this.money;
     }
 
-    protected boolean isMatched(){
+    public boolean isMatched(){
         return this.isMatched;
     }
 
-    protected void setMatch(boolean status){
+    public void setMatch(boolean status){
         this.isMatched = status;
     }
 
