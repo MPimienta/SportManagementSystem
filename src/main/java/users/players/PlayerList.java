@@ -1,8 +1,7 @@
 package users.players;
 
 import app.Lists;
-import users.players.Player;
-
+import app.Model;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -14,17 +13,18 @@ public class PlayerList implements Lists {
         this.players = new LinkedList<>();
     }
 
-    public void addPlayer(Player player){
-        int index = this.playerIndex(player.getName());
+    public void addElement(Model element){
+        Player player = (Player) element;
+        int index = this.indexOfElement(player.getName());
 
-        if(!this.playerExists(index)){
+        if(!this.elementExists(index)){
             players.add(index, player);
         } else {
             views.Error.PLAYER_ALREADY_EXISTS.writeln();
         }
     }
 
-    public boolean playerExists(int index){
+    public boolean elementExists(int index){
         if(index == this.players.size()){
             return false;
         } else {
@@ -32,7 +32,7 @@ public class PlayerList implements Lists {
         }
     }
 
-    public int playerIndex(String name){
+    public int indexOfElement(String name){
         assert name != null;
 
         int i = 0;
@@ -48,16 +48,22 @@ public class PlayerList implements Lists {
     }
 
     public void showList(){
-        Iterator<Player> iterator = this.players.iterator();
-        while(iterator.hasNext()){
-            System.out.println(iterator.next().getName());
-        }
+        System.out.println(this);
     }
 
-    public void removePlayer(String name){
-        int index = this.playerIndex(name);
+    public String toString(){
+        String list = "";
+        Iterator<Player> iterator = this.players.iterator();
+        while(iterator.hasNext()){
+            list = list + "\n" + iterator.next();
+        }
+        return list;
+    }
 
-        if(!this.playerExists(index)){
+    public void removeElement(String name){
+        int index = this.indexOfElement(name);
+
+        if(!this.elementExists(index)){
             views.Error.PLAYER_DOES_NOT_EXIST.writeln();
         } else {
             this.players.remove(index);
@@ -90,9 +96,9 @@ public class PlayerList implements Lists {
     }
 
     public void setNewPlayerScore(String name, double newScore){
-        int index = this.playerIndex(name);
+        int index = this.indexOfElement(name);
 
-        if(!this.playerExists(index)){
+        if(!this.elementExists(index)){
             views.Error.PLAYER_DOES_NOT_EXIST.writeln();
         } else {
             this.players.get(index).setNewScore(newScore);
@@ -123,18 +129,7 @@ public class PlayerList implements Lists {
         return players.size();
     }
 
-    public void show(){
-        System.out.println(this);
-    }
 
-    public String toString(){
-        String list = "";
-        Iterator<Player> iterator = this.players.iterator();
-        while(iterator.hasNext()){
-            list = list + "\n" + iterator.next();
-        }
-        return list;
-    }
 
 
 }
