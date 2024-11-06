@@ -1,19 +1,23 @@
+package users.lists;
+
+import users.players.Player;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class PlayerList {
-    private final LinkedList<Player_> players;
+abstract public class PlayerList {
+    private final LinkedList<Player> players;
 
     public PlayerList(){
         this.players = new LinkedList<>();
     }
 
-    public void addPlayer(String name){
-        int index = this.playerIndex(name);
+    public void addPlayer(Player player){
+        int index = this.playerIndex(player.getName());
 
         if(!this.playerExists(index)){
-            this.players.add(index,new Player_(name));
+            players.add(index, player);
         } else {
             views.Error.PLAYER_ALREADY_EXISTS.writeln();
         }
@@ -38,12 +42,12 @@ public class PlayerList {
         return i;
     }
 
-    public Player_ getPlayer(int index){
+    public Player getPlayer(int index){
         return this.players.get(index);
     }
 
     public void showList(){
-        Iterator<Player_> iterator = this.players.iterator();
+        Iterator<Player> iterator = this.players.iterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next().getName());
         }
@@ -60,7 +64,7 @@ public class PlayerList {
     }
 
     public void rankPlayers(){
-        Player_[] ranking = new Player_[this.players.size()];
+        Player[] ranking = new Player[this.players.size()];
         for (int i = 0; i < this.players.size(); i++) {
             ranking[i] = this.players.get(i);
         }
@@ -72,9 +76,9 @@ public class PlayerList {
         }
     }
 
-    private void sort(Player_[] ranking){
+    private void sort(Player[] ranking){
         for (int i=1; i < ranking.length; i++) {
-            Player_ aux = ranking[i];
+            Player aux = ranking[i];
             int j = i;
             while (j > 0 && ranking[j-1].getScore() < aux.getScore()){
                 ranking[j] = ranking[j-1];
@@ -94,7 +98,7 @@ public class PlayerList {
         }
     }
 
-    public int getRandomPlayer(LinkedList<Player_> auxList){
+    public int getRandomPlayer(LinkedList<Player> auxList){
         Random random = new Random();
 
         int randomPlayerIndex;
@@ -105,9 +109,9 @@ public class PlayerList {
         return randomPlayerIndex;
     }
 
-    public LinkedList<Player_> makeAuxList(){
-        LinkedList<Player_> auxList = new LinkedList<>();
-        Iterator<Player_> iterator = this.players.iterator();
+    public LinkedList<Player> makeAuxList(){
+        LinkedList<Player> auxList = new LinkedList<>();
+        Iterator<Player> iterator = this.players.iterator();
         while(iterator.hasNext()){
             auxList.add(iterator.next());
         }
@@ -117,5 +121,6 @@ public class PlayerList {
     public int getPlayersAmount(){
         return players.size();
     }
+
 
 }

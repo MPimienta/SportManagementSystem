@@ -1,4 +1,4 @@
-package commands;
+package commands.playerCommands;
 
 public class StatisticsShow {
 }
