@@ -1,7 +1,9 @@
-package commands;
+package app;
 
+import commands.Command;
 import commands.adminCommands.CreatePlayer;
 import commands.adminCommands.TeamCreate;
+import users.CommonUser;
 import users.User;
 import users.UserRole;
 import views.Input;
@@ -13,13 +15,21 @@ public class CommandHandler {
     private static final int COMMAND = 0;
     private static final int ARGUMENT = 1;
 
+    private static final int PLAYER_LIST = 0;
+    private static final int TEAM_LIST = 1;
+    private static final int TOURNAMENT_LIST = 2;
+
     private Map<String, Command> playerCommands = new HashMap<>();
     private Map<String, Command> adminCommands = new HashMap<>();
     private Map<String, Command> commonCommands;
-    private User currentUser;
     private String[] input;
+    private final Model[] elements;
+    private User currentUser;
 
-    public CommandHandler(){
+    public CommandHandler(Model[] elements, User currentUser){
+        this.elements = elements;
+        this.currentUser = currentUser;
+
         this.playerCommands = new HashMap<>();
         this.adminCommands = new HashMap<>();
         this.commonCommands = new HashMap<>();
@@ -44,8 +54,13 @@ public class CommandHandler {
 
     }
 
-    public void handleCommand(){
+    public void readCommand(){
         this.input = Input.readCommand();
+        this.handleCommand();
+    }
+
+    public void handleCommand(){
+
         if (currentUser.getRole() == UserRole.ADMIN){
 
         } else if (currentUser.getRole() == UserRole.PLAYER){

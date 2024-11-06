@@ -1,11 +1,12 @@
 package leagues;
 
+import app.Model;
 import views.Message;
 import java.util.Iterator;
 import java.util.LinkedList;
 import users.players.Player;
 
-public class MatchList {
+public class MatchList implements Model {
     private final LinkedList<Match> matchList;
 
     public MatchList(){

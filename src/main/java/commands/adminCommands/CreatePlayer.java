@@ -16,7 +16,7 @@ public class CreatePlayer implements Command {
 
     public void execute(String[] arguments, Model target){
         PlayerList singlePlayerList = (PlayerList) target;
-        singlePlayerList.addPlayer(new SinglePlayer(arguments[NAME], arguments[LASTNAME],
+        singlePlayerList.addElement(new SinglePlayer(arguments[NAME], arguments[LASTNAME],
                                     arguments[USERNAME], arguments[PASSWORD], UserRole.PLAYER));
 
     }

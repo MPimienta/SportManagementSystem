@@ -1,8 +1,9 @@
 package users.players;
 
+import app.Model;
 import users.UserRole;
 
-abstract public class Player {
+abstract public class Player implements Model {
 
     private final String name;
     private double score;

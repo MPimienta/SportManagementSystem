@@ -1,14 +1,16 @@
 package commands.adminCommands;
 
+import app.Model;
 import commands.Command;
 import users.players.PlayerList;
 
 
 public class PlayerDelete implements Command {
 
-    private final static int NAME = 0;
+    private final static int USER_NAME = 0;
 
-    public void execute(String[] argument, PlayerList playerList) {
-        playerList.removePlayer(argument[NAME]);
+    public void execute(String[] argument, Model target) {
+        PlayerList playerList = (PlayerList) target;
+        playerList.removeElement(argument[USER_NAME]);
     }
 }

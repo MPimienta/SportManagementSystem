@@ -1,4 +1,7 @@
+package app;
+
 import leagues.MatchList;
+import leagues.TournamentList;
 import users.CommonUser;
 import users.User;
 import users.UserRole;
@@ -7,30 +10,23 @@ import views.Message;
 
 public class SportSystem {
 
-    private final Command command;
-    private final PlayerList singlePlayerList;
-    private final PlayerList teamList;
-    private final MatchList matchList;
+    private final CommandHandler commandHandler;
+    private Model[] elements;
     private User currentUser;
 
     public SportSystem(){
-        this.singlePlayerList = new PlayerList();
-        this.teamList = new PlayerList();
-        this.matchList = new MatchList();
+        this.elements = new Model[]{new PlayerList(), new PlayerList(), new TournamentList()};
         this.currentUser = new CommonUser(UserRole.REGULAR);
-        this.command = new Command(this.singlePlayerList, this.matchList);
+
+        this.commandHandler = new CommandHandler(this.elements, this.currentUser);
     }
 
     private void start(){
         Message.TITLE.writeln();
         do{
             Message.ENTER_COMAND.write();
-            this.command.readCommand();
+            this.commandHandler.readCommand();
         }while(true);
-    }
-
-    public void switchUser(User user){
-        this.currentUser = user;
     }
 
     public static void main(String[] args) {
