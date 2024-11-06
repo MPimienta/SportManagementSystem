@@ -64,4 +64,8 @@ public class SinglePlayer extends Player implements User  {
     public int getMoney() {
         return super.getMoney();
     }
+
+    public String toString(){
+        return ("user_name: " + this.userName + "\npassword: " + this.password + "\nrole: player");
+    }
 }

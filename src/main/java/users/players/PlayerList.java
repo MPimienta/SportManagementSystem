@@ -1,12 +1,13 @@
 package users.players;
 
+import app.Lists;
 import users.players.Player;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class PlayerList {
+public class PlayerList implements Lists {
     private final LinkedList<Player> players;
 
     public PlayerList(){
@@ -120,6 +121,19 @@ public class PlayerList {
 
     public int getPlayersAmount(){
         return players.size();
+    }
+
+    public void show(){
+        System.out.println(this);
+    }
+
+    public String toString(){
+        String list = "";
+        Iterator<Player> iterator = this.players.iterator();
+        while(iterator.hasNext()){
+            list = list + "\n" + iterator.next();
+        }
+        return list;
     }
 
 

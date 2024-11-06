@@ -23,4 +23,8 @@ public class Admin implements User{
     public UserRole getRole(){
         return this.role;
     }
+
+    public String toString(){
+        return ("user_name: " + this.userName + "\npassword: " + this.password + "\nrole: admin");
+    }
 }
