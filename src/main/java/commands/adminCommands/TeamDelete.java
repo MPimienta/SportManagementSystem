@@ -1,11 +1,13 @@
 package commands.adminCommands;
 
-import commands.adminCommands.AdminCommands;
-import users.lists.PlayerList;
+import commands.Command;
+import users.players.PlayerList;
 
-public class TeamDelete extends AdminCommands {
+public class TeamDelete implements Command {
 
-    public TeamDelete(String argument, PlayerList playerList) {
-        playerList.removePlayer(argument);
+    private final static int NAME = 0;
+
+    public void execute(String[] argument, PlayerList playerList) {
+        playerList.removePlayer(argument[NAME]);
     }
 }

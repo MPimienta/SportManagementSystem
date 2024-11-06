@@ -1,5 +1,7 @@
 package users.players;
 
+import users.UserRole;
+
 abstract public class Player {
 
     private final String name;
@@ -21,41 +23,41 @@ abstract public class Player {
     }
 
 
-    public double getScore(){
+    protected double getScore(){
         return this.score;
     }
 
-    public String getName(){
+    protected String getName(){
         return this.name;
     }
 
-    public int getVictories(){
+    protected int getVictories(){
         return this.victories;
     }
 
-    public int getAssistanceScore(){
+    protected int getAssistanceScore(){
         return this.assistanceScore;
     }
 
-    public int getTournamentVictories(){
+    protected int getTournamentVictories(){
         return this.tournamentVictories;
     }
 
-    public int getMoney(){
+    protected int getMoney(){
         return this.money;
     }
 
-    public boolean isMatched(){
+    protected boolean isMatched(){
         return this.isMatched;
     }
 
-    public void setMatch(boolean status){
+    protected void setMatch(boolean status){
         this.isMatched = status;
     }
 
-    abstract public void setNewScore(double score);
+    abstract protected void setNewScore(double score);
 
-    public void setScore(double score){
+    protected void setScore(double score){
         this.score = score;
     }
 

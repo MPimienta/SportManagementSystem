@@ -1,4 +1,4 @@
-package users.lists;
+package users.players;
 
 import users.players.Player;
 
@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
-abstract public class PlayerList {
+public class PlayerList {
     private final LinkedList<Player> players;
 
     public PlayerList(){

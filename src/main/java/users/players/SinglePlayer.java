@@ -1,19 +1,22 @@
 package users.players;
 
 import users.User;
+import users.UserRole;
 
 public class SinglePlayer extends Player implements User  {
 
     private final String userName;
     private final String password;
     private final String lastName;
+    private final UserRole role;
 
 
-    public SinglePlayer(String userName, String password, String name, String lastName){
+    public SinglePlayer(String userName, String password, String name, String lastName, UserRole role){
         super(name);
         this.userName = userName;
         this.password = password;
         this.lastName = lastName;
+        this.role = role;
 
     }
 

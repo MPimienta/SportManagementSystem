@@ -1,6 +1,9 @@
+package leagues;
+
 import views.Message;
 import java.util.Iterator;
 import java.util.LinkedList;
+import users.players.Player;
 
 public class MatchList {
     private final LinkedList<Match> matchList;
@@ -25,7 +28,7 @@ public class MatchList {
         }
     }
 
-    public void matchMake(Player_[] players){
+    public void matchMake(Player[] players){
         this.matchList.add(new Match(players));
     }
 }

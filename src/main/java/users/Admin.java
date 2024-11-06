@@ -1,12 +1,22 @@
 package users;
 
-public class Admin extends User{
-    public Admin(String userName, String password){
-        super(userName, password);
+public class Admin implements User{
+
+    private final String userName;
+    private final String password;
+    private final UserRole role;
+
+    public Admin(String userName, String password, UserRole role){
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
     }
 
-    public void handleCommand(){
-
+    public String getUserName() {
+        return null;
     }
 
+    public String getPassword() {
+        return null;
+    }
 }

@@ -39,4 +39,9 @@ public class Team extends Player {
     public int getMoney() {
         return super.getMoney();
     }
+
+
+    public void setNewScore(double score) {
+        
+    }
 }

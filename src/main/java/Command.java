@@ -1,4 +1,6 @@
+import leagues.MatchList;
 import views.Input;
+import users.players.PlayerList;
 
 import java.util.LinkedList;
 
@@ -24,13 +26,11 @@ public class Command {
     private void handleCommand(){
         switch(this.input[COMMAND]){
             case "create":
-                this.handleCreate();
                 break;
             case "show":
                 playerList.showList();
                 break;
             case "remove":
-                this.handleRemove();
                 break;
             case "rank":
                 playerList.rankPlayers();
@@ -55,17 +55,9 @@ public class Command {
         }
     }
 
-    private void handleCreate(){
-        if(this.isValidArgument()){
-            this.playerList.addPlayer(input[ARGUMENT]);
-        }
-    }
 
-    private void handleRemove(){
-        if(this.isValidArgument()){
-            this.playerList.removePlayer(input[ARGUMENT]);
-        }
-    }
+
+
 
     private void handleScore(){
         if(this.isValidArgument()){

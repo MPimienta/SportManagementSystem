@@ -1,17 +1,14 @@
 package commands.adminCommands;
 
-import commands.adminCommands.AdminCommands;
-import users.lists.PlayerList;
+import commands.Command;
+import users.players.PlayerList;
 
 
-public class PlayerDelete extends AdminCommands {
+public class PlayerDelete implements Command {
 
     private final static int NAME = 0;
-    private final static int LASTNAME = 1;
 
-    public PlayerDelete(String arguments, PlayerList playerList){
-        String[] data = arguments.split(";");
-        String fullName = data[NAME] + data[LASTNAME];
-        playerList.removePlayer(fullName);
+    public void execute(String[] argument, PlayerList playerList) {
+        playerList.removePlayer(argument[NAME]);
     }
 }

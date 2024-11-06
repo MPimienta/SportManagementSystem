@@ -1,18 +1,9 @@
 package commands;
 
-import users.User;
+import users.players.PlayerList;
 
-abstract public class Command {
+public interface Command {
 
-    public Command(){
-        this.handleCommand();
-    }
-
-    protected void handleCommand(){
-
-    }
-
-
-
+    void execute(String[] arguments, PlayerList playerList);
 
 }

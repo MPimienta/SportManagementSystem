@@ -1,15 +1,15 @@
 package commands.adminCommands;
 
-import commands.adminCommands.AdminCommands;
-import users.lists.PlayerList;
+import commands.Command;
+import users.players.PlayerList;
 import users.players.Team;
 
-public class TeamCreate extends AdminCommands {
+public class TeamCreate implements Command {
 
-    public TeamCreate(String argument, PlayerList playerList) {
-        playerList.addPlayer(new Team(argument));
+    private static final int NAME = 0;
+
+    public void execute(String[] argument, PlayerList playerList) {
+        playerList.addPlayer(new Team(argument[NAME]));
     }
-
-
 
 }
